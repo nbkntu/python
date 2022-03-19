@@ -4,9 +4,21 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/")
-def home():
-    return {"Hello": "World"}
+books = [
+    {
+        'id': 1,
+        'title': 'Harry Potter',
+        'author': 'J K Rowling'
+    }
+]
 
-if __name__ == "__main__":
+@app.get('/books/{book_id}')
+def get_book(book_id: int):
+    for book in books:
+        if book['id'] == book_id:
+            return {
+                'book': book
+            }
+
+if __name__ == '__main__':
     uvicorn.run("main:app")
