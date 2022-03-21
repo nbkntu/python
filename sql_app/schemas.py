@@ -16,6 +16,10 @@ class ItemCreate(ItemBase):
     pass
 
 
+class ItemUpdate(ItemBase):
+    title: Optional[str] = None
+
+
 class Item(ItemBase):
     id: int
     owner_id: int

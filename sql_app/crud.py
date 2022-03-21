@@ -34,3 +34,18 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+
+def update_item(db: Session, item_id: int, item: schemas.ItemUpdate):
+    db_item = db.query(models.Item).filter(models.Item.id == item_id).first()
+    if db_item is None:
+        return None
+
+    if not item.title is None:
+        db_item.title = item.title
+    if not item.description is None:
+        db_item.description = item.description
+
+    # update DB
+    db.commit()
+    return db_item

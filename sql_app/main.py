@@ -53,3 +53,8 @@ def create_item_for_user(
 def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
+
+
+@app.post("/items/{item_id}", response_model=schemas.Item)
+def update_item(item_id: int, item: schemas.ItemUpdate, db: Session = Depends(get_db)):
+    return crud.update_item(db=db, item=item, item_id=item_id)

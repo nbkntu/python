@@ -1,4 +1,3 @@
-from pyrsistent import v
 import uvicorn
 
 from fastapi import FastAPI
